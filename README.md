@@ -250,6 +250,28 @@ chmod +x ~/.config/coc/extensions/coc-lua-data/lua-language-server
 
 ---
 
+## 💖 Special Thanks
+
+Huge appreciation to the awesome developers and communities that made this setup possible:
+
+- [**Neovim**](https://github.com/neovim/neovim) — next-generation Vim editor ❤️  
+- [**vim-plug**](https://github.com/junegunn/vim-plug) — elegant and minimal plugin manager  
+- [**coc.nvim**](https://github.com/neoclide/coc.nvim) — complete LSP & IntelliSense engine for Neovim  
+- [**bubbly.nvim**](https://github.com/datwaft/bubbly.nvim) — fast, vibrant, and customizable statusline ✨  
+- [**nvim-treesitter**](https://github.com/nvim-treesitter/nvim-treesitter) — modern syntax highlighting and code parsing  
+- [**nvim-web-devicons**](https://github.com/kyazdani42/nvim-web-devicons) — filetype icons for a better visual experience  
+- [**ripgrep**](https://github.com/BurntSushi/ripgrep) & [**fd**](https://github.com/sharkdp/fd) — ultra-fast searching tools  
+- [**lua-language-server**](https://github.com/LuaLS/lua-language-server) — providing rich Lua support for CoC  
+- [**Termux Community**](https://termux.dev/en/) — for bringing Linux development to Android 📱  
+- And every open-source contributor who inspires **Atexovi-Nvim** 💪  
+
+---
+
+## ☕ Donations
+Support the bot development via [Saweria](https://saweria.co/atexovi)
+
+---
+
 ## 📜 License
 
 [MIT](LICENSE)
