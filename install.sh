@@ -6,6 +6,60 @@
 # =====================================================
 
 clear
+
+set -e
+
+# === Colors ===
+green=$'\033[1;32m'
+yellow=$'\033[1;33m'
+blue=$'\033[1;34m'
+cyan=$'\033[1;36m'
+reset=$'\033[0m'
+
+# === Progress Bar Function ===
+progress_bar() {
+    local task="$1"
+    local duration="${2:-2}"
+    local width=40
+    local char="█"
+    local term_width=$(tput cols)
+
+    for i in $(seq 0 100); do
+        local step=$((i * width / 100))
+        local bar=$(printf "%0.s$char" $(seq 1 $step))
+        local space=$(printf "%0.s " $(seq 1 $((width - step))))
+        local color="$yellow"
+        (( i == 100 )) && color="$green"
+
+        local prog_text="[$bar$space] $i%"
+        local pad=$((term_width - ${#task} - ${#prog_text} - 5))
+        ((pad<0)) && pad=0
+        local padding=$(printf "%*s" "$pad" "")
+        printf "\r[*] %s%s%s%s" "$task" "$padding" "$color" "$prog_text$reset"
+        sleep "$(awk "BEGIN {print $duration/100}")"
+    done
+    echo
+}
+
+echo -e "${cyan}🚀 Starting Atexovi-Nvim Setup...${reset}"
+
+# === 1. Install Dependencies ===
+DEPS=(git neovim nodejs npm python curl ripgrep fd clang)
+echo -e "${yellow}📦 Checking required packages...${reset}"
+for pkg in "${DEPS[@]}"; do
+  if command -v "$pkg" >/dev/null 2>&1; then
+    echo -e "${green}✔ $pkg already installed${reset}"
+  else
+    echo -e "${blue}⚙ Installing $pkg ...${reset}"
+    progress_bar "Installing $pkg" 1.5
+#!/data/data/com.termux/files/usr/bin/bash
+# =====================================================
+#  Atexovi-Nvim Full Installer (Termux & Linux)
+# =====================================================
+#  by Atex Ovi - 2025
+# =====================================================
+
+clear
 set -e
 
 # === Colors ===
