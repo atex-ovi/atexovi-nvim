@@ -156,6 +156,43 @@ Atexovi-Nvim uses a hybrid approach combining:
 
 ---
 
+## 🎨 Available Themes
+
+<table>
+<tr>
+<td align="center">
+<b>Default</b><br>
+<img src="https://raw.githubusercontent.com/atex-ovi/img-assets/main/default.jpg" width="150">
+</td>
+<td align="center">
+<b>Aurora Dark</b><br>
+<img src="https://raw.githubusercontent.com/atex-ovi/img-assets/main/aurora_dark.jpg" width="150">
+</td>
+<td align="center">
+<b>Dracula</b><br>
+<img src="https://raw.githubusercontent.com/atex-ovi/img-assets/main/dracula.jpg" width="150">
+</td>
+</tr>
+<tr>
+<td align="center">
+<b>Polar</b><br>
+<img src="https://raw.githubusercontent.com/atex-ovi/img-assets/main/polar.jpg" width="150">
+</td>
+<td align="center">
+<b>Deep Blue</b><br>
+<img src="https://raw.githubusercontent.com/atex-ovi/img-assets/main/deep_blue.jpg" width="150">
+</td>
+<td align="center">
+<b>Ashen</b><br>
+<img src="https://raw.githubusercontent.com/atex-ovi/img-assets/main/ashen.jpg" width="150">
+</td>
+</tr>
+</table>
+
+> Tip: Open Neovim and run `:ThemePicker` to quickly switch between themes.
+
+---
+
 ## 🖥️ System Support
 
 Atexovi-Nvim is fully tested on **Termux (Android, arm64 / aarch64)**.  
