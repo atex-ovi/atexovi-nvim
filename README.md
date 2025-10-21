@@ -87,7 +87,7 @@
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/atexovi/atexovi-nvim.git
+git clone https://github.com/atex-ovi/atexovi-nvim.git
 cd atexovi-nvim
 bash install.sh
 ```
