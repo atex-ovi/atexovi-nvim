@@ -12,9 +12,6 @@
   <a href="https://github.com/atex-ovi/atexovi-nvim/network/members" target="_blank">
     <img src="https://img.shields.io/github/forks/atex-ovi/atexovi-nvim?style=for-the-badge&logo=github&labelColor=181717&color=EDEDED&logoColor=white" alt="GitHub Forks" />
   </a>
-  <a href="https://github.com/atex-ovi/atexovi-nvim/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License MIT" />
-  </a>
 </p>
 
 <p align="center">
@@ -31,12 +28,6 @@
   <a href="https://json.org/" target="_blank">
     <img src="https://img.shields.io/badge/JSON-Support-000000?style=for-the-badge&logo=json&logoColor=white" alt="JSON" />
   </a>
-  <a href="https://github.com/nvim-treesitter/nvim-treesitter" target="_blank">
-    <img src="https://img.shields.io/badge/Highlight-TreeSitter-FF6C37?style=for-the-badge&logo=tree-sitter&logoColor=white" alt="TreeSitter" />
-  </a>
-  <a href="https://github.com/nvim-lua/plenary.nvim" target="_blank">
-    <img src="https://img.shields.io/badge/Lua%20Library-Plenary-6E5494?style=for-the-badge&logo=lua&logoColor=white" alt="Plenary.nvim" />
-  </a>
 </p>
 
 <p align="center">
@@ -44,8 +35,8 @@
   <a href="https://github.com/neoclide/coc.nvim" target="_blank">
     <img src="https://img.shields.io/badge/LSP-CoC.nvim-181717?style=for-the-badge&logo=neovim&logoColor=white" alt="coc.nvim" />
   </a>
-  <a href="https://github.com/nvim-lualine/lualine.nvim" target="_blank">
-    <img src="https://img.shields.io/badge/UI-Lualine-8E44AD?style=for-the-badge&logo=lines&logoColor=white" alt="Lualine" />
+  <a href="https://github.com/datwaft/bubbly.nvim" target="_blank">
+    <img src="https://img.shields.io/badge/UI-Bubbly.nvim-FF69B4?style=for-the-badge&logo=smashingmagazine&logoColor=white" alt="Bubbly.nvim" />
   </a>
   <a href="https://github.com/kyazdani42/nvim-web-devicons" target="_blank">
     <img src="https://img.shields.io/badge/Icons-Devicons-FF1493?style=for-the-badge&logo=material-design-icons&logoColor=white" alt="Devicons" />
@@ -74,6 +65,11 @@
   </a>
   <a href="https://github.com/atex-ovi" target="_blank">
     <img src="https://img.shields.io/badge/Profile-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Profile" />
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/atex-ovi/atexovi-nvim/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License MIT" />
   </a>
 </p>
 
