@@ -22,7 +22,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'plasticboy/vim-markdown'
 
 " UI & Navigation
-"Plug 'nvim-lualine/lualine.nvim'
 Plug 'datwaft/bubbly.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
@@ -34,9 +33,9 @@ let g:coc_global_extensions = ['coc-lua']
 
 call plug#end()
 
-" ------------------------------- 
-" General Settings 
-" ------------------------------- 
+" -------------------------------
+" General Settings
+" -------------------------------
 set nocompatible
 filetype plugin indent on
 syntax enable
@@ -68,51 +67,23 @@ nnoremap <leader>r :CocRestart<CR>
 lua require("atexovi.theme_picker")
 command! ThemePicker lua require("atexovi.theme_picker").choose()
 
-
 " -------------------------------
-" Lualine Setup
+" Bubbly.nvim Setup
 " -------------------------------
-"lua << EOF
-"require('lualine').setup {
-"options = { theme = 'auto', section_separators = '', component_separators = '' }
-"}
-"EOF
-
-"Bubbly.nvim
-
 lua << EOF
 pcall(function()
   require('bubbly').setup{
-      theme = {
-          fg       = '#c0caf5',
-          bg       = '#1e1e2e',
-          yellow   = '#e5c07b',
-          cyan     = '#56b6c2',
-          darkblue = '#081633',
-          green    = '#98c379',
-          orange   = '#d19a66',
-          violet   = '#a9a1e1',
-          magenta  = '#c678dd',
-          blue     = '#61afef',
-          red      = '#e06c75',
-      },
-
-      components = {
-          left = {
-              'mode',
-              { { data = '', color = 'blue', style = 'bold' } },
-              'branch',
-              { { data = ' Atexovi ', color = 'red', style = 'bold' } },
-              'filename',
-          },
-          right = {
-              'diagnostics',
-              'filetype',
-              'position',
-          }
-      },
-
-      separators = { left = '', right = '' },
+    theme = {
+      fg='#c0caf5', bg='#1e1e2e',
+      yellow='#e5c07b', cyan='#56b6c2', darkblue='#081633',
+      green='#98c379', orange='#d19a66', violet='#a9a1e1',
+      magenta='#c678dd', blue='#61afef', red='#e06c75'
+    },
+    components = {
+      left={'mode',{ {data='',color='blue',style='bold'} },'branch',{ {data=' Atexovi ',color='red',style='bold'} },'filename'},
+      right={'diagnostics','filetype','position'}
+    },
+    separators={left='',right=''}
   }
 end)
 EOF
@@ -121,28 +92,32 @@ EOF
 " Nvim Tree Setup
 " -------------------------------
 lua << EOF
-require("nvim-tree").setup({
-  sort_by = "name",
-  view = { width = 28, side = "left" },
-  renderer = { highlight_opened_files = "all" },
-  filters = { dotfiles = false },
-  update_focused_file = { enable = true, update_cwd = true },
-})
+pcall(function()
+  require("nvim-tree").setup({
+    sort_by="name",
+    view={width=28,side="left"},
+    renderer={highlight_opened_files="all"},
+    filters={dotfiles=false},
+    update_focused_file={enable=true,update_cwd=true}
+  })
+end)
 EOF
 
 " -------------------------------
-" Treesitter Setup (syntax & indent)
+" Treesitter Setup
 " -------------------------------
 lua << EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "lua", "vim", "python", "javascript" },
-  highlight = { enable = true, additional_vim_regex_highlighting = false },
-  indent = { enable = true },
-}
+pcall(function()
+  require'nvim-treesitter.configs'.setup{
+    ensure_installed={"lua","vim","python","javascript"},
+    highlight={enable=true,additional_vim_regex_highlighting=false},
+    indent={enable=true}
+  }
+end)
 EOF
 
 " -------------------------------
-" Coc Basic Setup (non-Lua)
+" Coc Basic Setup
 " -------------------------------
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
@@ -156,10 +131,9 @@ nnoremap <leader>f :CocCommand eslint.executeAutofix<CR>
 autocmd FileType lua setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 " -------------------------------
-" Startup Message / Debug Info
+" Startup Message
 " -------------------------------
 augroup AtexoviDebug
   autocmd!
   autocmd VimEnter * echom "Atexovi-Nvim Loaded"
-  autocmd VimEnter * echom "Filetype: " . &filetype
 augroup END

@@ -1,18 +1,19 @@
 #!/data/data/com.termux/files/usr/bin/bash
 # =====================================================
-#  Atexovi-Nvim Installer (Termux Compatible)
+#  Atexovi-Nvim Full Installer (Termux & Linux)
 # =====================================================
 #  by Atex Ovi - 2025
 # =====================================================
 
+clear
 set -e
 
 # === Colors ===
-green="\033[1;32m"
-yellow="\033[1;33m"
-red="\033[1;31m"
-cyan="\033[1;36m"
-reset="\033[0m"
+green=$'\033[1;32m'
+yellow=$'\033[1;33m'
+blue=$'\033[1;34m'
+cyan=$'\033[1;36m'
+reset=$'\033[0m'
 
 # === Progress Bar Function ===
 progress_bar() {
@@ -20,27 +21,20 @@ progress_bar() {
     local duration="${2:-2}"
     local width=40
     local char="█"
-
-    local YELLOW=$'\033[1;33m'
-    local GREEN=$'\033[1;32m'
-    local RESET=$'\033[0m'
-
     local term_width=$(tput cols)
 
     for i in $(seq 0 100); do
         local step=$((i * width / 100))
         local bar=$(printf "%0.s$char" $(seq 1 $step))
         local space=$(printf "%0.s " $(seq 1 $((width - step))))
-        local color="$YELLOW"
-        (( i == 100 )) && color="$GREEN"
+        local color="$yellow"
+        (( i == 100 )) && color="$green"
 
         local prog_text="[$bar$space] $i%"
         local pad=$((term_width - ${#task} - ${#prog_text} - 5))
         ((pad<0)) && pad=0
         local padding=$(printf "%*s" "$pad" "")
-
-        printf "\r[*] %s%s%s%s" "$task" "$padding" "$color" "$prog_text$RESET"
-
+        printf "\r[*] %s%s%s%s" "$task" "$padding" "$color" "$prog_text$reset"
         sleep "$(awk "BEGIN {print $duration/100}")"
     done
     echo
@@ -48,99 +42,127 @@ progress_bar() {
 
 echo -e "${cyan}🚀 Starting Atexovi-Nvim Setup...${reset}"
 
-# === 1. Check & Install Dependencies ===
-DEPS=(
-  git
-  neovim
-  nodejs
-  npm
-  python
-  curl
-  ripgrep
-  fd
-  clang
-)
-
+# === 1. Install Dependencies ===
+DEPS=(git neovim nodejs npm python curl ripgrep fd clang)
 echo -e "${yellow}📦 Checking required packages...${reset}"
 for pkg in "${DEPS[@]}"; do
   if command -v "$pkg" >/dev/null 2>&1; then
     echo -e "${green}✔ $pkg already installed${reset}"
   else
-    echo -e "${red}⚙ Installing $pkg ...${reset}"
+    echo -e "${blue}⚙ Installing $pkg ...${reset}"
     progress_bar "Installing $pkg" 1.5
-    pkg install -y "$pkg" >/dev/null 2>&1 && \
+    pkg install -y "$pkg" &>/dev/null && \
       echo -e "${green}✔ $pkg installed successfully${reset}" || \
-      echo -e "${red}❌ Failed to install $pkg${reset}"
+      echo -e "${blue}❌ Failed to install $pkg${reset}"
   fi
 done
 
-# === 2. Backup .config & .local if existing ===
+# === 2. Backup old configs ===
 CONFIG_DIR="$HOME/.config"
 LOCAL_DIR="$HOME/.local"
 BACKUP_DIR="$HOME/atexovi_backup_$(date +%Y%m%d_%H%M%S)"
-
 if [ -d "$CONFIG_DIR/nvim" ] || [ -d "$CONFIG_DIR/coc" ]; then
-  echo -e "${yellow}📂 Existing configuration detected. Creating backup...${reset}"
+  echo -e "${yellow}📂 Old config existing. (Backing up old config)...${reset}"
   progress_bar "Backing up configuration" 2
   mkdir -p "$BACKUP_DIR"
   [ -d "$CONFIG_DIR/nvim" ] && mv "$CONFIG_DIR/nvim" "$BACKUP_DIR/nvim"
   [ -d "$CONFIG_DIR/coc" ] && mv "$CONFIG_DIR/coc" "$BACKUP_DIR/coc"
 fi
+[ -d "$LOCAL_DIR/share/nvim" ] && mv "$LOCAL_DIR/share/nvim" "$BACKUP_DIR/share_nvim"
 
-if [ -d "$LOCAL_DIR/share/nvim" ]; then
-  mkdir -p "$BACKUP_DIR"
-  mv "$LOCAL_DIR/share/nvim" "$BACKUP_DIR/share_nvim"
-fi
-
-# === 3. Copy new configuration ===
+# === 3. Copy new configs ===
 echo -e "${cyan}📁 Deploying new configuration...${reset}"
 progress_bar "Copying configuration files" 1.5
 mkdir -p "$CONFIG_DIR"
 cp -r config/nvim "$CONFIG_DIR/"
 cp -r config/coc "$CONFIG_DIR/"
 
-# === 4. Install CoC Extensions ===
+# === 4. Install vim-plug if missing ===
+PLUG_FILE="$HOME/.local/share/nvim/site/autoload/plug.vim"
+if [ ! -f "$PLUG_FILE" ]; then
+    echo -e "${cyan}⚙ Installing vim-plug...${reset}"
+    mkdir -p "$(dirname "$PLUG_FILE")"
+    curl -sSfLo "$PLUG_FILE" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+# === 5. Install Vim Plugins first ===
+echo -e "${cyan}🌀 Installing Vim Plugins (PlugInstall)...${reset}"
+progress_bar "Installing Vim Plugins" 3
+nvim --headless +PlugInstall +qall &>/dev/null
+sleep 1
+
+# === 6. Coc Extensions Setup ===
 EXT_DIR="$CONFIG_DIR/coc/extensions"
+mkdir -p "$EXT_DIR"
 cd "$EXT_DIR"
-
-if [ -f package.json ]; then
-  echo -e "${cyan}⚙ Installing CoC extensions...${reset}"
-  progress_bar "Installing CoC extensions" 2.5
-  npm install --no-package-lock --ignore-scripts >/dev/null 2>&1 && \
-    echo -e "${green}✔ CoC extensions installed successfully${reset}" || \
-    echo -e "${red}⚠️  Failed to install CoC extensions${reset}"
-else
-  echo -e "${red}⚠️  package.json not found, skipping CoC installation${reset}"
+if [ ! -f package.json ]; then
+cat > package.json <<'EOF'
+{
+  "dependencies": {
+    "coc-css": ">=2.1.0",
+    "coc-go": ">=1.3.35",
+    "coc-html": ">=1.8.0",
+    "coc-json": ">=1.9.3",
+    "coc-lua": "^2.0.6",
+    "coc-rust-analyzer": ">=0.85.0",
+    "coc-sh": ">=1.2.4",
+    "coc-snippets": ">=3.4.7",
+    "coc-tsserver": ">=2.3.1",
+    "coc-yaml": ">=1.9.1",
+    "coc-ccls": ">=0.0.5",
+    "coc-clangd": ">=0.32.0",
+    "coc-git": ">=2.7.7",
+    "coc-eslint": ">=3.0.15",
+    "coc-diagnostic": ">=0.24.1",
+    "coc-prettier": ">=11.0.1"
+  }
+}
+EOF
 fi
+npm install --silent --no-package-lock --ignore-scripts
 
-cd -
+# Coc-settings.json lengkap
+COC_SETTINGS="$CONFIG_DIR/nvim/coc-settings.json"
+mkdir -p "$(dirname "$COC_SETTINGS")"
+cat > "$COC_SETTINGS" <<EOF
+{
+  "languageserver": {
+    "lua": {
+      "command": "lua-language-server",
+      "filetypes": ["lua"],
+      "rootPatterns": ["init.lua", ".git/"],
+      "settings": {
+        "Lua": {
+          "diagnostics": { "globals": ["vim"] },
+          "workspace": { "library": ["runtimepath"] },
+          "telemetry": { "enable": false }
+        }
+      }
+    }
+  },
+  "snippets.ultisnips.pythonPrompt": false
+}
+EOF
 
-# === 5. Ensure lua-language-server is executable ===
-LUA_BIN="$EXT_DIR/coc-lua-data/lua-language-server/bin/lua-language-server"
-if [ -f "$LUA_BIN" ]; then
-  chmod +x "$LUA_BIN"
-  echo -e "${green}✔ lua-language-server marked as executable${reset}"
-else
-  echo -e "${yellow}ℹ️  lua-language-server not found (optional)${reset}"
-fi
+# === 7. Install Coc Extensions silently ===
+nvim --headless +"CocInstall -sync coc-css coc-go coc-html coc-json coc-lua coc-rust-analyzer coc-sh coc-snippets coc-tsserver coc-yaml coc-ccls coc-clangd coc-git coc-eslint coc-diagnostic coc-prettier" +qall &>/dev/null
+sleep 1
 
-# === 5.5. Auto PlugInstall if plugins are missing ===
-PLUG_DIR="$HOME/.local/share/nvim/plugged"
+# === 8. Install coc-pyright separately (Python LSP) ===
+echo -e "${cyan}🐍 Installing Coc extensions...${reset}"
+npm install -g pyright &>/dev/null
+nvim --headless +"CocInstall -sync coc-pyright" +qall &>/dev/null
 
-if [ -d "$PLUG_DIR" ] && [ "$(ls -A $PLUG_DIR)" ]; then
-  echo -e "${yellow}📦 Plugin directory already exists, skipping PlugInstall...${reset}"
-else
-  echo -e "${cyan}🌀 Running PlugInstall automatically inside Neovim...${reset}"
-  progress_bar "Installing Vim Plugins" 3
-  nvim --headless +PlugInstall +qall >/dev/null 2>&1 && \
-    echo -e "${green}✔ All plugins installed successfully${reset}" || \
-    echo -e "${red}⚠️  PlugInstall failed${reset}"
-fi
+# === 9. Install Treesitter parsers ===
+echo -e "${cyan}🌳 Installing Treesitter parsers...${reset}"
+nvim --headless +'TSInstallSync! lua python javascript' +qall &>/dev/null
 
-# === 6. Finishing ===
+# === 10. Restart Coc supaya semua LSP aktif ===
+nvim --headless +"CocRestart" +qall &>/dev/null
+
+# === 11. Final Message ===
 progress_bar "Finalizing setup" 1.5
 echo -e "${green}✅ Installation Complete!${reset}"
-echo -e "${yellow}🪄 Launch Neovim with:${reset}  nvim"
-echo -e "${cyan}📦 Backup created at:${reset}  $BACKUP_DIR"
-
-exit 0
+echo -e "${yellow}🪄 Launch Neovim:${reset} nvim"
+echo -e "${cyan}📦 Backup created at:${reset} $BACKUP_DIR"
