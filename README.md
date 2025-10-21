@@ -191,20 +191,22 @@ git neovim nodejs npm python clang ripgrep fd
 
 ```
 atexovi-nvim/
-├── install.sh
+├── LICENSE
 ├── README.md
-├── config/
-│   ├── nvim/
-│   │   ├── init.vim
-│   │   └── lua/atexovi/theme_picker.lua
-│   └── coc/
-│       ├── extensions/
-│       │   ├── coc-lua-data/
-│       │   │   ├── db.json
-│       │   │   └── lua-language-server
-│       │   └── package.json
-│       └── memos.json
-└── .gitignore
+├── config
+│   ├── coc
+│   │   ├── extensions
+│   │   │   ├── coc-lua-data
+│   │   │   │   ├── db.json
+│   │   │   │   └── lua-language-server
+│   │   │   └── package.json
+│   │   └── memos.json
+│   └── nvim
+│       ├── init.vim
+│       └── lua
+│           └── atexovi
+│               └── theme_picker.lua
+└── install.sh
 ```
 
 ---
