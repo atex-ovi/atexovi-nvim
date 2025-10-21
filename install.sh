@@ -20,6 +20,37 @@ reset=$'\033[0m'
 LOG_FILE="$HOME/atexovi_install.log"
 echo "" > "$LOG_FILE"
 
+# === 0. ASCII Art Header + Title ===
+clear
+
+ascii_art='
+      ___           ___           ___                                    ___     
+     /__/\         /  /\         /  /\          ___        ___          /__/\    
+     \  \:\       /  /:/_       /  /::\        /__/\      /  /\        |  |::\   
+      \  \:\     /  /:/ /\     /  /:/\:\       \  \:\    /  /:/        |  |:|:\  
+  _____\__\:\   /  /:/ /:/_   /  /:/  \:\       \  \:\  /__/::\      __|__|:|\:\ 
+ /__/::::::::\ /__/:/ /:/ /\ /__/:/ \__\:\  ___  \__\:\ \__\/\:\__  /__/::::| \:\
+ \  \:\~~\~~\/ \  \:\/:/ /:/ \  \:\ /  /:/ /__/\ |  |:|    \  \:\/\ \  \:\~~\__\/
+  \  \:\  ~~~   \  \::/ /:/   \  \:\  /:/  \  \:\|  |:|     \__\::/  \  \:\      
+   \  \:\        \  \:\/:/     \  \:\/:/    \  \:\__|:|     /__/:/    \  \:\     
+    \  \:\        \  \::/       \  \::/      \__\::::/      \__\/      \  \:\    
+     \__\/         \__\/         \__\/           ~~~~                   \__\/    
+'
+
+cols=$(tput cols)
+
+# Cetak ASCII horizontal center
+while IFS= read -r line; do
+    len=${#line}
+    pad=$(( (cols - len) / 2 ))
+    (( pad < 0 )) && pad=0
+    printf "%*s%s\n" "$pad" "" "$line"
+done <<< "$ascii_art"
+
+msg="ATEXOVI-NVIM INSTALLER"
+pad=$(( (cols - ${#msg}) / 2 ))
+printf "\n\n%*s%s\n\n" "$pad" "" "$cyan$msg$reset"
+
 # === Progress Bar Function ===
 progress_bar() {
     local task="$1"
@@ -45,8 +76,6 @@ progress_bar() {
     echo
 }
 
-echo -e "${cyan}🚀 Starting Atexovi-Nvim Setup...${reset}"
-
 # === 1. Install Dependencies ===
 DEPS=(git neovim nodejs npm python curl ripgrep fd clang)
 echo -e "${yellow}📦 Checking required packages...${reset}"
@@ -67,7 +96,7 @@ CONFIG_DIR="$HOME/.config"
 LOCAL_DIR="$HOME/.local"
 BACKUP_DIR="$HOME/atexovi_backup_$(date +%Y%m%d_%H%M%S)"
 if [ -d "$CONFIG_DIR/nvim" ] || [ -d "$CONFIG_DIR/coc" ]; then
-  echo -e "${yellow}📂 Old config existing. (Backing up old config)...${reset}"
+  echo -e "${yellow}📂 Old config existing.${reset}"
   progress_bar "Backing up configuration" 2
   mkdir -p "$BACKUP_DIR"
   [ -d "$CONFIG_DIR/nvim" ] && mv "$CONFIG_DIR/nvim" "$BACKUP_DIR/nvim"
