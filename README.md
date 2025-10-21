@@ -90,6 +90,7 @@
 git clone https://github.com/atex-ovi/atexovi-nvim.git
 cd atexovi-nvim
 bash install.sh
+
 ```
 
 > 🪄 This script will:
