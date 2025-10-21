@@ -13,7 +13,12 @@ green=$'\033[1;32m'
 yellow=$'\033[1;33m'
 blue=$'\033[1;34m'
 cyan=$'\033[1;36m'
+red=$'\033[1;31m'
 reset=$'\033[0m'
+
+# === Log file ===
+LOG_FILE="$HOME/atexovi_install.log"
+echo "" > "$LOG_FILE"
 
 # === Progress Bar Function ===
 progress_bar() {
@@ -51,9 +56,9 @@ for pkg in "${DEPS[@]}"; do
   else
     echo -e "${blue}⚙ Installing $pkg ...${reset}"
     progress_bar "Installing $pkg" 1.5
-    pkg install -y "$pkg" &>/dev/null && \
+    pkg install -y "$pkg" &>>"$LOG_FILE" && \
       echo -e "${green}✔ $pkg installed successfully${reset}" || \
-      echo -e "${blue}❌ Failed to install $pkg${reset}"
+      echo -e "${red}❌ Failed to install $pkg${reset}" &>>"$LOG_FILE"
   fi
 done
 
@@ -86,13 +91,14 @@ if [ ! -f "$PLUG_FILE" ]; then
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-# === 5. Install Vim Plugins first ===
-echo -e "${cyan}🌀 Installing Vim Plugins (PlugInstall)...${reset}"
+# === 5. Install Vim Plugins (PlugInstall) ===
+echo -e "${cyan}🌀 Installing Vim Plugins...${reset}"
 progress_bar "Installing Vim Plugins" 3
-nvim --headless +PlugInstall +qall &>/dev/null
+# Jalankan PlugInstall tapi jangan hentikan script walau ada error
+nvim --headless +PlugInstall +qall &>>"$LOG_FILE" || true
 sleep 1
 
-# === 6. Coc Extensions Setup ===
+# === 6. Coc Extensions Setup (except pyright) ===
 EXT_DIR="$CONFIG_DIR/coc/extensions"
 mkdir -p "$EXT_DIR"
 cd "$EXT_DIR"
@@ -120,7 +126,7 @@ cat > package.json <<'EOF'
 }
 EOF
 fi
-npm install --silent --no-package-lock --ignore-scripts
+npm install --silent --no-package-lock --ignore-scripts &>>"$LOG_FILE"
 
 # Coc-settings.json lengkap
 COC_SETTINGS="$CONFIG_DIR/nvim/coc-settings.json"
@@ -146,23 +152,24 @@ cat > "$COC_SETTINGS" <<EOF
 EOF
 
 # === 7. Install Coc Extensions silently ===
-nvim --headless +"CocInstall -sync coc-css coc-go coc-html coc-json coc-lua coc-rust-analyzer coc-sh coc-snippets coc-tsserver coc-yaml coc-ccls coc-clangd coc-git coc-eslint coc-diagnostic coc-prettier" +qall &>/dev/null
+nvim --headless +"CocInstall -sync coc-css coc-go coc-html coc-json coc-lua coc-rust-analyzer coc-sh coc-snippets coc-tsserver coc-yaml coc-ccls coc-clangd coc-git coc-eslint coc-diagnostic coc-prettier" +qall &>>"$LOG_FILE" || true
 sleep 1
 
 # === 8. Install coc-pyright separately (Python LSP) ===
-echo -e "${cyan}🐍 Installing Coc extensions...${reset}"
-npm install -g pyright &>/dev/null
-nvim --headless +"CocInstall -sync coc-pyright" +qall &>/dev/null
+echo -e "${cyan}🐍 Installing Coc extension...${reset}"
+npm install -g pyright &>>"$LOG_FILE" || true
+nvim --headless +"CocInstall -sync coc-pyright" +qall &>>"$LOG_FILE" || true
 
 # === 9. Install Treesitter parsers ===
 echo -e "${cyan}🌳 Installing Treesitter parsers...${reset}"
-nvim --headless +'TSInstallSync! lua python javascript' +qall &>/dev/null
+nvim --headless +'TSInstallSync! lua python javascript' +qall &>>"$LOG_FILE" || true
 
 # === 10. Restart Coc supaya semua LSP aktif ===
-nvim --headless +"CocRestart" +qall &>/dev/null
+nvim --headless +"CocRestart" +qall &>>"$LOG_FILE" || true
 
 # === 11. Final Message ===
 progress_bar "Finalizing setup" 1.5
 echo -e "${green}✅ Installation Complete!${reset}"
 echo -e "${yellow}🪄 Launch Neovim:${reset} nvim"
 echo -e "${cyan}📦 Backup created at:${reset} $BACKUP_DIR"
+echo -e "${blue}📜 Full log: $LOG_FILE${reset}"
