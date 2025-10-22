@@ -82,22 +82,6 @@
 > 💡 Modern, lightweight, and fully automated **Neovim IDE setup** for Termux.  
 > Built for real-world coding — featuring CoC, LSP, Autocomplete, Syntax Highlight, Git, and custom Atexovi theme.
 
----
-
-## ⚙️ Installation
-
-```bash
-git clone https://github.com/atex-ovi/atexovi-nvim.git
-cd atexovi-nvim
-bash install.sh
-
-```
-
-> 🪄 This script will:
-> - Auto-install missing Termux packages
-> - Backup existing `.config` & `.local`
-> - Deploy your Neovim + CoC configuration
-> - Auto-install all CoC extensions and LSP backends
 
 ---
 
@@ -105,35 +89,36 @@ bash install.sh
 
 | Category | Description |
 |-----------|-------------|
-| 🧩 **UI/UX** | Custom Atexovi theme, Bubbly statusline, icons & better layout |
-| ⚙️ **Automation** | `install.sh` handles dependencies, setup & backup |
+| 🧩 **UI/UX** | Custom Atexovi theme, Bubbly statusline, icons & optimized layout |
+| ⚙️ **Automation** | `install.sh` handles dependencies, backup, and setup automatically |
 | 📦 **CoC Integration** | Complete CoC ecosystem pre-installed |
 | 💬 **Autocomplete & IntelliSense** | Context-aware suggestions for all major languages |
 | 🎨 **Syntax Highlight** | Treesitter-based highlight for multi-language code |
-| 🔍 **LSP Ready** | Works with Lua, JS/TS, Go, Rust, C/C++, Python, YAML, HTML, CSS, JSON |
+| 🔍 **LSP Ready** | Works with Lua, JS/TS, Go, Rust, C/C++, Python, YAML, HTML, CSS, JSON, PHP, XML, Shell |
 | 🧾 **Lint & Format** | ESLint, Prettier, Diagnostic, and auto-format support |
 | 🧰 **Snippets Engine** | Built-in CoC-snippets support |
-| 🧭 **File Navigation** | Telescope-like fuzzy finder and project search (via `ripgrep` & `fd`) |
+| 🧭 **File Navigation** | Fuzzy finder & project search (via `ripgrep` & `fd`) |
 | 🧩 **Extensible** | Easy to add new plugins or tweak configuration |
-| 🔄 **Auto Compile** | Automatically compiles syntax and treesitter highlight definitions |
+| 🔄 **Auto Compile** | Automatically compiles syntax and Treesitter highlight definitions |
 | 💾 **Safe Setup** | Backs up `.config` & `.local` if already present |
 
 ---
 
 ## 🔧 CoC Extension Stack
 
-All extensions are pre-defined in `config/coc/extensions/package.json` and automatically installed:
-
 | Language / Tool | Extension | Features |
-|------------------|------------|-----------|
+|-----------------|-----------|---------|
 | 🧠 **Lua** | `coc-lua` | Smart LSP via `lua-language-server` |
 | 🐍 **Python** | `coc-pyright` | Type checking, autocompletion |
 | 🦀 **Rust** | `coc-rust-analyzer` | Full LSP support, inline hints |
 | 🐹 **Go** | `coc-go` | Autoimports, linting, formatting |
-| ⚙️ **C / C++** | `coc-clangd` / `coc-ccls` | Language server & symbol indexing |
+| ⚙️ **C / C++** | `coc-clangd`, `coc-ccls` | Language server & symbol indexing |
 | 🧾 **YAML** | `coc-yaml` | Schema validation, autocomplete |
-| 🌐 **HTML / CSS / JSON / JS / TS** | `coc-html`, `coc-css`, `coc-json`, `coc-tsserver` | Complete frontend stack |
-| 🔧 **Linting** | `coc-eslint`, `coc-diagnostic` | Code diagnostics and fix |
+| 🌐 **HTML / CSS / JSON** | `coc-html`, `coc-css`, `coc-json` | Complete frontend stack |
+| 🐚 **Shell / Bash** | `coc-sh` | Linting & autocompletion |
+| 🐘 **PHP** | `coc-phpls` | PHP language server support |
+| 📄 **XML** | `coc-xml` | XML syntax and LSP support |
+| 🔧 **Linting** | `coc-eslint`, `coc-diagnostic` | Code diagnostics and fixes |
 | 🪄 **Formatting** | `coc-prettier` | Auto code formatter |
 | 🧩 **Git Integration** | `coc-git` | Git status, blame, diff in editor |
 | ✂️ **Snippets** | `coc-snippets` | Snippet manager & templates |
@@ -142,18 +127,27 @@ All extensions are pre-defined in `config/coc/extensions/package.json` and autom
 
 ## 📘 Syntax Highlight & Autocompile
 
-Atexovi-Nvim uses a hybrid approach combining:
-- **Treesitter** (for semantic highlighting & folding)
-- **CoC** (for LSP-powered syntax validation)
-- Auto compile on first open — caches highlight definitions in `.local/share/nvim/`
-- Supports:
-  - Lua / Vimscript  
-  - Python  
-  - C / C++  
-  - Rust  
-  - Go  
-  - JavaScript / TypeScript  
-  - HTML / CSS / JSON / YAML / Markdown
+Atexovi-Nvim uses a hybrid approach combining:  
+- **Treesitter** for semantic highlighting & folding  
+- **CoC** for LSP-powered syntax validation  
+- Auto compile on first open — caches highlight definitions in `.local/share/nvim/`  
+
+**Supported languages & tools:**  
+- **Lua** – `coc-lua`  
+- **Python** – `coc-pyright`  
+- **Rust** – `coc-rust-analyzer`  
+- **Go** – `coc-go`  
+- **C / C++** – `coc-clangd`, `coc-ccls`  
+- **JavaScript / TypeScript** – `coc-tsserver`  
+- **HTML / CSS / JSON** – `coc-html`, `coc-css`, `coc-json`  
+- **YAML** – `coc-yaml`  
+- **Shell / Bash** – `coc-sh`  
+- **PHP** – `coc-phpls`  
+- **XML** – `coc-xml`  
+- **Git** – `coc-git`  
+- **Linting / Diagnostics** – `coc-eslint`, `coc-diagnostic`  
+- **Formatting** – `coc-prettier`  
+- **Snippets** – `coc-snippets`
 
 ---
 
@@ -207,6 +201,25 @@ However, it also works seamlessly on:
 | Windows (WSL) | `x86_64` | ⚙️ Supported with small tweaks |
 
 > 🧠 On **Termux**, `install.sh` automatically detects architecture (`uname -m`) and optimizes paths for `lua-language-server` and CoC.
+
+---
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/atex-ovi/atexovi-nvim.git
+cd atexovi-nvim
+bash install.sh
+
+```
+> 💡 Tip: Make sure all **required Termux packages** are installed before running `install.sh`:
+> `git`, `neovim`, `nodejs`, `npm`, `python`, `clang`, `ripgrep`, `fd`
+>
+> 🪄 This script will:
+> - Auto-install missing Termux packages
+> - Backup existing `.config` & `.local`
+> - Deploy your Neovim + CoC configuration
+> - Auto-install all CoC extensions and LSP backends
 
 ---
 
