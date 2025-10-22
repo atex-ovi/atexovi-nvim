@@ -123,7 +123,6 @@ fi
 # === 5. Install Vim Plugins (PlugInstall) ===
 echo -e "${cyan}🌀 Installing Vim Plugins...${reset}"
 progress_bar "Installing Vim Plugins" 3
-# Jalankan PlugInstall tapi jangan hentikan script walau ada error
 nvim --headless +PlugInstall +qall &>>"$LOG_FILE" || true
 sleep 1
 
@@ -139,7 +138,8 @@ cat > package.json <<'EOF'
     "coc-go": ">=1.3.35",
     "coc-html": ">=1.8.0",
     "coc-json": ">=1.9.3",
-    "coc-lua": "^2.0.6",
+    "coc-lua": ">=2.0.6",
+    "coc-pyright": ">=1.1.405",
     "coc-rust-analyzer": ">=0.85.0",
     "coc-sh": ">=1.2.4",
     "coc-snippets": ">=3.4.7",
@@ -150,14 +150,16 @@ cat > package.json <<'EOF'
     "coc-git": ">=2.7.7",
     "coc-eslint": ">=3.0.15",
     "coc-diagnostic": ">=0.24.1",
-    "coc-prettier": ">=11.0.1"
+    "coc-prettier": ">=11.0.1",
+    "coc-phpls": ">=2.2.4",
+    "coc-xml": ">=1.14.1"
   }
 }
 EOF
 fi
 npm install --silent --no-package-lock --ignore-scripts &>>"$LOG_FILE"
 
-# Coc-settings.json lengkap
+# Coc-settings.json
 COC_SETTINGS="$CONFIG_DIR/nvim/coc-settings.json"
 mkdir -p "$(dirname "$COC_SETTINGS")"
 cat > "$COC_SETTINGS" <<EOF
@@ -180,23 +182,44 @@ cat > "$COC_SETTINGS" <<EOF
 }
 EOF
 
-# === 7. Install Coc Extensions silently ===
+# === 7. Install main Coc extensions ===
+echo -e "${cyan}🌀 Installing main Coc extensions...${reset}"
 nvim --headless +"CocInstall -sync coc-css coc-go coc-html coc-json coc-lua coc-rust-analyzer coc-sh coc-snippets coc-tsserver coc-yaml coc-ccls coc-clangd coc-git coc-eslint coc-diagnostic coc-prettier" +qall &>>"$LOG_FILE" || true
 sleep 1
 
-# === 8. Install coc-pyright separately (Python LSP) ===
-echo -e "${cyan}🐍 Installing Coc extension...${reset}"
+# === 8. Install Coc Python extension (pyright) ===
+echo -e "${cyan}🐍 Installing Coc Python extension (pyright)...${reset}"
 npm install -g pyright &>>"$LOG_FILE" || true
 nvim --headless +"CocInstall -sync coc-pyright" +qall &>>"$LOG_FILE" || true
+sleep 1
 
-# === 9. Install Treesitter parsers ===
-echo -e "${cyan}🌳 Installing Treesitter parsers...${reset}"
+# === 8.1 Install Treesitter parsers for default languages ===
+echo -e "${cyan}🌳 Installing default Treesitter parsers (lua, python, javascript)...${reset}"
 nvim --headless +'TSInstallSync! lua python javascript' +qall &>>"$LOG_FILE" || true
+sleep 1
 
-# === 10. Restart Coc supaya semua LSP aktif ===
+# === 9. Install OpenJDK for XML support if not installed ===
+if ! command -v java >/dev/null 2>&1; then
+    echo -e "${yellow}☕ Installing OpenJDK 21 for XML support...${reset}"
+    pkg install -y openjdk-21 &>>"$LOG_FILE"
+fi
+
+# === 10. Install additional Coc extensions (PHP & XML) ===
+echo -e "${cyan}⚡ Installing additional Coc extensions (PHP & XML)...${reset}"
+nvim --headless +"CocInstall -sync coc-phpls coc-xml" +qall &>>"$LOG_FILE" || true
+sleep 1
+
+# === 11. Install Treesitter parsers for additional languages (php, xml) ===
+echo -e "${cyan}🌳 Installing Treesitter parsers for additional languages (php, xml)...${reset}"
+nvim --headless +'TSInstallSync! php xml' +qall &>>"$LOG_FILE" || true
+sleep 1
+
+# === 12. Restart Coc to activate all LSPs ===
+echo -e "${cyan}🔄 Restarting Coc to activate all LSPs...${reset}"
 nvim --headless +"CocRestart" +qall &>>"$LOG_FILE" || true
+sleep 1
 
-# === 11. Final Message ===
+# === 13. Final Message ===
 progress_bar "Finalizing setup" 1.5
 echo -e "${green}✅ Installation Complete!${reset}"
 echo -e "${yellow}🪄 Launch Neovim:${reset} nvim"
