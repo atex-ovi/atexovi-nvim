@@ -214,12 +214,12 @@ bash install.sh
 ```
 > 💡 Tip: Make sure all **required Termux packages** are installed before running `install.sh`:
 > `git`, `neovim`, `nodejs`, `npm`, `python`, `clang`, `ripgrep`, `fd`
->
-> 🪄 This script will:
-> - Auto-install missing Termux packages
-> - Backup existing `.config` & `.local`
-> - Deploy your Neovim + CoC configuration
-> - Auto-install all CoC extensions and LSP backends
+
+🪄 This script will:
+- Auto-install missing Termux packages
+- Backup existing `.config` & `.local`
+- Deploy your Neovim + CoC configuration
+- Auto-install all CoC extensions and LSP backends
 
 ---
 
