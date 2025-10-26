@@ -184,8 +184,8 @@ Atexovi-Nvim uses a hybrid approach combining:
 </tr>
 </table>
 
-> Tip: Open Neovim and run `:ThemePicker` to quickly switch between themes.
-
+> [!TIP]
+> Open Neovim and run `:ThemePicker` to quickly switch between themes.
 ---
 
 ## 🖥️ System Support
@@ -200,7 +200,8 @@ However, it also works seamlessly on:
 | macOS | `arm64` (M1/M2) | ⚙️ Partial (needs path adjustment) |
 | Windows (WSL) | `x86_64` | ⚙️ Supported with small tweaks |
 
-> 🧠 On **Termux**, `install.sh` automatically detects architecture (`uname -m`) and optimizes paths for `lua-language-server` and CoC.
+> [!NOTE]
+> On **Termux**, `install.sh` automatically detects architecture (`uname -m`) and optimizes paths for `lua-language-server` and CoC.
 
 ---
 
@@ -212,7 +213,8 @@ cd atexovi-nvim
 bash install.sh
 
 ```
-> 💡 Tip: Make sure all **required Termux packages** are installed before running `install.sh`:
+> [!TIP]
+> Make sure all **required Termux packages** are installed before running `install.sh`:
 > `git`, `neovim`, `nodejs`, `npm`, `python`, `clang`, `ripgrep`, `fd`
 
 🪄 This script will:
