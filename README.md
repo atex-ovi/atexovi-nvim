@@ -270,7 +270,7 @@ Before overwriting:
 so your old Neovim config is **never lost**.
 
 > [!IMPORTANT]
-> ⚠️ Backups are created **automatically before any overwrite**.  
+> Backups are created **automatically before any overwrite**.  
 > This ensures your old Neovim setup stays safe and can be restored anytime.  
 > Do **not delete** the `.bak_` folders unless you’re certain you no longer need them.
 ---
@@ -301,7 +301,7 @@ cp ./bin/lua-language-server ~/.config/coc/extensions/coc-lua-data/
 chmod +x ~/.config/coc/extensions/coc-lua-data/lua-language-server
 ```
 > [!CAUTION]
-> 🧩 This step is optional and meant for advanced users only.  
+> This step is optional and meant for advanced users only.  
 > Run it only if automatic installation fails.
 
 ---
