@@ -83,7 +83,7 @@
 > Built for real-world coding — featuring CoC, LSP, Autocomplete, Syntax Highlight, Git, and custom Atexovi theme.
 
 
----
+<br>
 
 ## 🧠 Features Overview
 
@@ -102,7 +102,7 @@
 | 🔄 **Auto Compile** | Automatically compiles syntax and Treesitter highlight definitions |
 | 💾 **Safe Setup** | Backs up `.config` & `.local` if already present |
 
----
+<br>
 
 ## 🔧 CoC Extension Stack
 
@@ -123,7 +123,7 @@
 | 🧩 **Git Integration** | `coc-git` | Git status, blame, diff in editor |
 | ✂️ **Snippets** | `coc-snippets` | Snippet manager & templates |
 
----
+<br>
 
 ## 📘 Syntax Highlight & Autocompile
 
@@ -149,7 +149,7 @@ Atexovi-Nvim uses a hybrid approach combining:
 - **Formatting** – `coc-prettier`  
 - **Snippets** – `coc-snippets`
 
----
+<br>
 
 ## 🎨 Available Themes
 
@@ -186,7 +186,7 @@ Atexovi-Nvim uses a hybrid approach combining:
 
 > [!TIP]
 > Open Neovim and run `:ThemePicker` to quickly switch between themes.
----
+<br>
 
 ## 🖥️ System Support
 
@@ -203,7 +203,7 @@ However, it also works seamlessly on:
 > [!NOTE]
 > On **Termux**, `install.sh` automatically detects architecture (`uname -m`) and optimizes paths for `lua-language-server` and CoC.
 
----
+<br>
 
 ## ⚙️ Installation
 
@@ -223,7 +223,7 @@ bash install.sh
 - Deploy your Neovim + CoC configuration
 - Auto-install all CoC extensions and LSP backends
 
----
+<br>
 
 ## 🧩 Dependencies
 
@@ -234,7 +234,7 @@ The installer automatically ensures all essential Termux packages are installed.
 git neovim nodejs npm python clang ripgrep fd
 ```
 
----
+<br>
 
 ## 📦 Directory Structure
 
@@ -258,7 +258,7 @@ atexovi-nvim/
 └── install.sh
 ```
 
----
+<br>
 
 ## 💾 Backup System
 
@@ -273,7 +273,7 @@ so your old Neovim config is **never lost**.
 > Backups are created **automatically before any overwrite**.  
 > This ensures your old Neovim setup stays safe and can be restored anytime.  
 > Do **not delete** the `.bak_` folders unless you’re certain you no longer need them.
----
+<br>
 
 ## 🚀 After Installation
 
@@ -288,7 +288,7 @@ To verify:
 :CocInfo
 ```
 
----
+<br>
 
 ## 🧰 Optional: Manual Lua Server Build
 
@@ -304,7 +304,7 @@ chmod +x ~/.config/coc/extensions/coc-lua-data/lua-language-server
 > This step is optional and meant for advanced users only.  
 > Run it only if automatic installation fails.
 
----
+<br>
 
 ## 💖 Special Thanks
 
@@ -321,14 +321,14 @@ Huge appreciation to the awesome developers and communities that made this setup
 - [**Termux Community**](https://termux.dev/en/) — for bringing Linux development to Android 📱  
 - And every open-source contributor who inspires **Atexovi-Nvim** 💪  
 
----
+<br>
 
 ## Support & Donations
 If you find this project useful, consider supporting the development:
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://saweria.co/atexovi)
 
-<br><br>
+<br>
 
 ## 📜 License
 
