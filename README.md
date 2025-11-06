@@ -1,75 +1,75 @@
 <p align="center">
   <!-- 🔹 Project Info -->
   <a href="https://neovim.io/" target="_blank">
-    <img src="https://img.shields.io/badge/Neovim-0.10+-57A143?style=for-the-badge&logo=neovim&logoColor=white" alt="Neovim 0.10+" />
+    <img src="https://img.shields.io/badge/Neovim-0.10+-57A143?style=flat&logo=neovim&logoColor=white" alt="Neovim 0.10+" />
   </a>
   <a href="https://termux.dev/en/" target="_blank">
-    <img src="https://img.shields.io/badge/Termux-Compatible-222?style=for-the-badge&logo=android&logoColor=white" alt="Termux Compatible" />
+    <img src="https://img.shields.io/badge/Termux-Compatible-222?style=flat&logo=android&logoColor=white" alt="Termux Compatible" />
   </a>
-  <a href="https://github.com/atex-ovi/atexovi-nvim/stargazers" target="_blank">
-    <img src="https://img.shields.io/github/stars/atex-ovi/atexovi-nvim?style=for-the-badge&logo=github&labelColor=181717&color=EDEDED&logoColor=white" alt="GitHub Stars" />
-  </a>
-  <a href="https://github.com/atex-ovi/atexovi-nvim/network/members" target="_blank">
-    <img src="https://img.shields.io/github/forks/atex-ovi/atexovi-nvim?style=for-the-badge&logo=github&labelColor=181717&color=EDEDED&logoColor=white" alt="GitHub Forks" />
-  </a>
-</p>
-
-<p align="center">
-  <!-- 🔹 Supported Tech & Languages -->
   <a href="https://www.lua.org/" target="_blank">
-    <img src="https://img.shields.io/badge/Lua-5.4-2C2D72?style=for-the-badge&logo=lua&logoColor=white" alt="Lua 5.4" />
+    <img src="https://img.shields.io/badge/Lua-5.4-2C2D72?style=flat&logo=lua&logoColor=white" alt="Lua 5.4" />
   </a>
   <a href="https://www.python.org/" target="_blank">
-    <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+    <img src="https://img.shields.io/badge/Python-3.x-3776AB?style=flat&logo=python&logoColor=white" alt="Python" />
   </a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-    <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
+    <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript" />
   </a>
   <a href="https://json.org/" target="_blank">
-    <img src="https://img.shields.io/badge/JSON-Support-000000?style=for-the-badge&logo=json&logoColor=white" alt="JSON" />
+    <img src="https://img.shields.io/badge/JSON-Support-000000?style=flat&logo=json&logoColor=white" alt="JSON" />
+  </a>
+  <a href="https://github.com/neoclide/coc.nvim" target="_blank">
+    <img src="https://img.shields.io/badge/LSP-CoC.nvim-181717?style=flat&logo=neovim&logoColor=white" alt="coc.nvim" />
+  </a>
+  <a href="https://github.com/datwaft/bubbly.nvim" target="_blank">
+    <img src="https://img.shields.io/badge/UI-Bubbly.nvim-FF69B4?style=flat&logo=smashingmagazine&logoColor=white" alt="Bubbly.nvim" />
+  </a>
+  <a href="https://github.com/kyazdani42/nvim-web-devicons" target="_blank">
+    <img src="https://img.shields.io/badge/Icons-Devicons-FF1493?style=flat&logo=material-design-icons&logoColor=white" alt="Devicons" />
+  </a>
+  <a href="https://github.com/junegunn/vim-plug" target="_blank">
+    <img src="https://img.shields.io/badge/Plugin-VimPlug-009999?style=flat&logo=vim&logoColor=white" alt="VimPlug" />
+  </a>
+  <a href="https://github.com/nvim-telescope/telescope.nvim" target="_blank">
+    <img src="https://img.shields.io/badge/Finder-Telescope-4682B4?style=flat&logo=telescope&logoColor=white" alt="Telescope" />
+  </a>
+  <a href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank">
+    <img src="https://img.shields.io/badge/File%20Explorer-NvimTree-228B22?style=flat&logo=tree&logoColor=white" alt="NvimTree" />
   </a>
 </p>
 
 <p align="center">
-  <!-- 🔹 Plugins & LSP -->
-  <a href="https://github.com/neoclide/coc.nvim" target="_blank">
-    <img src="https://img.shields.io/badge/LSP-CoC.nvim-181717?style=for-the-badge&logo=neovim&logoColor=white" alt="coc.nvim" />
+  <!-- 🔹 GitHub Stats + License -->
+  <a href="https://github.com/atex-ovi/DownloaderX/stargazers" target="_blank">
+    <img src="https://img.shields.io/github/stars/atex-ovi/DownloaderX?style=flat&logo=github&labelColor=181717&color=white" alt="GitHub Stars">
   </a>
-  <a href="https://github.com/datwaft/bubbly.nvim" target="_blank">
-    <img src="https://img.shields.io/badge/UI-Bubbly.nvim-FF69B4?style=for-the-badge&logo=smashingmagazine&logoColor=white" alt="Bubbly.nvim" />
+  <a href="https://github.com/atex-ovi/DownloaderX/network/members" target="_blank">
+    <img src="https://img.shields.io/github/forks/atex-ovi/DownloaderX?style=flat&logo=github&labelColor=181717&color=white" alt="GitHub Forks">
   </a>
-  <a href="https://github.com/kyazdani42/nvim-web-devicons" target="_blank">
-    <img src="https://img.shields.io/badge/Icons-Devicons-FF1493?style=for-the-badge&logo=material-design-icons&logoColor=white" alt="Devicons" />
+  <a href="https://github.com/atex-ovi/DownloaderX/issues" target="_blank">
+    <img src="https://img.shields.io/github/issues/atex-ovi/DownloaderX?style=flat&logo=github&labelColor=181717&color=white" alt="GitHub Issues">
   </a>
-  <a href="https://github.com/junegunn/vim-plug" target="_blank">
-    <img src="https://img.shields.io/badge/Plugin-VimPlug-009999?style=for-the-badge&logo=vim&logoColor=white" alt="VimPlug" />
+  <a href="https://github.com/atex-ovi/DownloaderX/commits/main" target="_blank">
+    <img src="https://img.shields.io/github/last-commit/atex-ovi/DownloaderX?style=flat&logo=git&labelColor=181717&color=white" alt="Last Commit">
   </a>
-  <a href="https://github.com/nvim-telescope/telescope.nvim" target="_blank">
-    <img src="https://img.shields.io/badge/Finder-Telescope-4682B4?style=for-the-badge&logo=telescope&logoColor=white" alt="Telescope" />
-  </a>
-  <a href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank">
-    <img src="https://img.shields.io/badge/File%20Explorer-NvimTree-228B22?style=for-the-badge&logo=tree&logoColor=white" alt="NvimTree" />
+  <a href="https://github.com/atex-ovi/atexovi-nvim/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat" alt="License MIT" />
   </a>
 </p>
 
 <p align="center">
   <!-- 🔹 Contact & Support -->
-  <a href="https://saweria.co/atexovi" target="_blank">
-    <img src="https://img.shields.io/badge/Donate-Saweria-FFA726?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Donate via Saweria" />
+  <a href="https://github.com/sponsors/atex-ovi" target="_blank">
+    <img src="https://img.shields.io/badge/Sponsor-%23f06?style=flat&logo=github-sponsors&logoColor=white" alt="Sponsor">
   </a>
-  <a href="https://t.me/atexovi" target="_blank">
-    <img src="https://img.shields.io/badge/Contact-Telegram-29A9EB?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram Contact" />
+  <a href="https://saweria.co/atexovi" target="_blank">
+    <img src="https://img.shields.io/badge/Saweria-FFA726?style=flat&logo=ko-fi&logoColor=white" alt="Saweria">
   </a>
   <a href="https://facebook.com/atex.ovi" target="_blank">
-    <img src="https://img.shields.io/badge/Follow-Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook Follow" />
+    <img src="https://img.shields.io/badge/Facebook-1877F2?style=flat&logo=facebook&logoColor=white" alt="Facebook">
   </a>
-  <a href="https://github.com/atex-ovi" target="_blank">
-    <img src="https://img.shields.io/badge/Profile-GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Profile" />
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/atex-ovi/atexovi-nvim/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License MIT" />
+  <a href="https://t.me/atexovi" target="_blank">
+    <img src="https://img.shields.io/badge/Telegram-29A9EB?style=flat&logo=telegram&logoColor=white" alt="Telegram">
   </a>
 </p>
 
