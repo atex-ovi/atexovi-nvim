@@ -74,8 +74,6 @@
 </p>
 
 <br>
-<hr style="border: 0.5px solid #444;">
-<br>
 
 <h1 align="center">🌌 Atexovi-Nvim – Universal Neovim Setup for Termux</h1>
 
