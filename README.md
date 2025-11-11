@@ -39,25 +39,6 @@
 </p>
 
 <p align="center">
-  <!-- 🔹 GitHub Stats + License -->
-  <a href="https://github.com/atex-ovi/DownloaderX/stargazers" target="_blank">
-    <img src="https://img.shields.io/github/stars/atex-ovi/DownloaderX?style=flat&logo=github&labelColor=181717&color=white" alt="GitHub Stars">
-  </a>
-  <a href="https://github.com/atex-ovi/DownloaderX/network/members" target="_blank">
-    <img src="https://img.shields.io/github/forks/atex-ovi/DownloaderX?style=flat&logo=github&labelColor=181717&color=white" alt="GitHub Forks">
-  </a>
-  <a href="https://github.com/atex-ovi/DownloaderX/issues" target="_blank">
-    <img src="https://img.shields.io/github/issues/atex-ovi/DownloaderX?style=flat&logo=github&labelColor=181717&color=white" alt="GitHub Issues">
-  </a>
-  <a href="https://github.com/atex-ovi/DownloaderX/commits/main" target="_blank">
-    <img src="https://img.shields.io/github/last-commit/atex-ovi/DownloaderX?style=flat&logo=git&labelColor=181717&color=white" alt="Last Commit">
-  </a>
-  <a href="https://github.com/atex-ovi/atexovi-nvim/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat" alt="License MIT" />
-  </a>
-</p>
-
-<p align="center">
   <!-- 🔹 Contact & Support -->
   <a href="https://github.com/sponsors/atex-ovi" target="_blank">
     <img src="https://img.shields.io/badge/Sponsor-%23f06?style=flat&logo=github-sponsors&logoColor=white" alt="Sponsor">
